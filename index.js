@@ -12,16 +12,14 @@ const db = require("./config/db");
   }
 })();
 
-const userRouter=require("./routes/user")
-
+// const userRouter=require("./routes/user")
+const appRoutes = require("./routes/index");
 require("dotenv").config();
 const app = express();
 app.use(express.json());
-app.use("/api/v1/users",userRouter)
+// app.use("/api/v1/users",userRouter)
 
-
-
-  
+app.use("/api/v1", appRoutes);
 
 // listen
 const PORT = process.env.PORT || 8090;

@@ -6,7 +6,7 @@ exports.createUser = async (data) => {
 };
 
 exports.getUserByEmail = async (email) => {
-  let user = await User.findAll({ where: { email: email } });
+  let user = await User.findOne({ where: { email: email } });
   return user;
 };
 
@@ -24,5 +24,6 @@ exports.deleteUser = async (id) => {
 
 exports.getUserById = async (id) => {
   let user = await User.findByPk(id);
+  
   return user;
 };
