@@ -1,7 +1,10 @@
+const Product = require("../models/product");
 const User = require("../models/user");
 const userService = require("../service/user");
 exports.getUser = async (req, res) => {
-  let user = await User.findAll();
+  let user = await User.findAll({
+    include: Product,
+  });
   res.send(user);
 };
 

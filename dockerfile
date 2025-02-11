@@ -1,22 +1,13 @@
-FROM node:20-alpine3.18
+FROM node:20-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Install PNPM globally
-RUN npm install -g pnpm
-
-# Copy package.json and lock file first (better caching)
 COPY package.json pnpm-lock.yaml ./
 
-# Install dependencies
-RUN pnpm install 
+RUN npm install -g pnpm && pnpm install --frozen-lockfile
 
-# Copy the rest of the application files
 COPY . .
 
-# Expose port
 EXPOSE 8090
 
-# Start the application
 CMD ["node", "index.js"]
